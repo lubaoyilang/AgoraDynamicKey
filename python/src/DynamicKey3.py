@@ -4,6 +4,7 @@ import sys
 
 import ctypes
 
+
 def generateSignaure(
         appID,
         appCertificate,
@@ -13,12 +14,12 @@ def generateSignaure(
         uid,
         expiredTs):
     key = "\x00" * (32 - len(appID)) + appID
-    content = key +\
-        '{:0>10}'.format(unixTs) + \
-        "%.8x" % (int(randomInt) & 0xFFFFFFFF) + \
-        str(channelName) +\
-        '{:0>10}'.format(uid) + \
-        '{:0>10}'.format(expiredTs)
+    content = key + \
+              '{:0>10}'.format(unixTs) + \
+              "%.8x" % (int(randomInt) & 0xFFFFFFFF) + \
+              str(channelName) + \
+              '{:0>10}'.format(uid) + \
+              '{:0>10}'.format(expiredTs)
     signature = hmac.new(appCertificate, content, sha1).hexdigest()
     return signature
 
@@ -44,9 +45,9 @@ def generate(
         expiredTs)
     version = '{0:0>3}'.format(3)
     ret = version + str(signature) + \
-        appID + \
-        '{0:0>10}'.format(unixTs) + \
-        "%.8x" % (int(randomInt) & 0xFFFFFFFF) + \
-        '{:0>10}'.format(uid) + \
-        '{:0>10}'.format(expiredTs)
+          appID + \
+          '{0:0>10}'.format(unixTs) + \
+          "%.8x" % (int(randomInt) & 0xFFFFFFFF) + \
+          '{:0>10}'.format(uid) + \
+          '{:0>10}'.format(expiredTs)
     return ret

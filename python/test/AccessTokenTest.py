@@ -15,6 +15,7 @@ expireTimestamp = 1446455471
 salt = 1
 ts = 1111111
 
+
 class AccessTokenTest(unittest.TestCase):
 
     def test_(self):
@@ -39,6 +40,7 @@ class AccessTokenTest(unittest.TestCase):
 
         result = key.build()
         self.assertEqual(expected, result)
+
 
 if __name__ == "__main__":
     unittest.main()

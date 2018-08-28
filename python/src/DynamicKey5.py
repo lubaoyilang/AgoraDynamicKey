@@ -15,7 +15,8 @@ ALLOW_UPLOAD_IN_CHANNEL = 1
 
 # permision
 NoUpload = "0"
-AudioVideoUpload= "3"
+AudioVideoUpload = "3"
+
 
 def generatePublicSharingKey(
         appID,
@@ -25,7 +26,7 @@ def generatePublicSharingKey(
         randomInt,
         uid,
         expiredTs
-        ):
+):
     return generateDynamicKey(
         PUBLIC_SHARING_SERVICE,
         appID,
@@ -34,8 +35,8 @@ def generatePublicSharingKey(
         unixTs,
         randomInt,
         uid,
-        expiredTs,{}
-        )
+        expiredTs, {}
+    )
 
 
 def generateRecordingKey(
@@ -85,9 +86,9 @@ def generateInChannelPermissionKey(
         unixTs,
         randomInt,
         uid,
-        expiredTs,permission ):
-    extra={}
-    extra[ALLOW_UPLOAD_IN_CHANNEL]=permission
+        expiredTs, permission):
+    extra = {}
+    extra[ALLOW_UPLOAD_IN_CHANNEL] = permission
     return generateDynamicKey(
         IN_CHANNEL_PERMISSION,
         appID,
@@ -126,31 +127,37 @@ def generateDynamicKey(
     )
     version = '{0:0>3}'.format(5)
     content = packUint16(servicetype) \
-        + packString(signature)\
-        + packString(appID.decode('hex'))\
-        + packUint32(unixTs) \
-        + packUint32(randomInt) \
-        + packUint32(expiredTs)\
-        + packMap(extra)
+              + packString(signature) \
+              + packString(appID.decode('hex')) \
+              + packUint32(unixTs) \
+              + packUint32(randomInt) \
+              + packUint32(expiredTs) \
+              + packMap(extra)
     return version + base64.b64encode(content)
 
+
 def packUint16(x):
-    return struct.pack('<H',int(x))
+    return struct.pack('<H', int(x))
+
 
 def packUint32(x):
-    return struct.pack('<I',int(x))
+    return struct.pack('<I', int(x))
+
 
 def packInt32(x):
     return struct.pack('<i', int(x))
 
+
 def packString(string):
     return packUint16(len(string)) + string
+
 
 def packMap(m):
     ret = packUint16(len(m.items()))
     for k, v in m.items():
         ret += packUint16(k) + packString(v)
     return ret
+
 
 def generateSignature(
         servicetype,
@@ -164,12 +171,12 @@ def generateSignature(
         extra,
 ):
     content = packUint16(servicetype) \
-        + packString(appID.decode('hex'))\
-        + packUint32(unixTs)  \
-        + packUint32(randomInt)  \
-        + packString(channelName) \
-        + packUint32(uid)\
-        + packUint32(expiredTs)\
-        +  packMap(extra)
+              + packString(appID.decode('hex')) \
+              + packUint32(unixTs) \
+              + packUint32(randomInt) \
+              + packString(channelName) \
+              + packUint32(uid) \
+              + packUint32(expiredTs) \
+              + packMap(extra)
     signature = hmac.new(appCertificate.decode('hex'), content, sha1).hexdigest()
     return signature.upper()

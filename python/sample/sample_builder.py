@@ -1,5 +1,5 @@
 #! /usr/bin/python
-#! -*- coding: utf-8 -*-
+# ! -*- coding: utf-8 -*-
 
 import sys
 import unittest
@@ -17,17 +17,18 @@ channelName = "7d72365eb983485397e3e3f9d460bdda"
 uid = 2882341273
 expireTimestamp = 0
 
-def main():
-  
-  builder = SimpleTokenBuilder.SimpleTokenBuilder(appID, appCertificate, channelName, uid)
-  builder.initPrivileges(SimpleTokenBuilder.Role_Attendee)
-  builder.setPrivilege(AccessToken.kJoinChannel, expireTimestamp)
-  builder.setPrivilege(AccessToken.kPublishAudioStream, expireTimestamp)
-  builder.setPrivilege(AccessToken.kPublishVideoStream, expireTimestamp)
-  builder.setPrivilege(AccessToken.kPublishDataStream, expireTimestamp)
 
-  result = builder.buildToken()
-  print result
+def main():
+    builder = SimpleTokenBuilder.SimpleTokenBuilder(appID, appCertificate, channelName, uid)
+    builder.initPrivileges(SimpleTokenBuilder.Role_Attendee)
+    builder.setPrivilege(AccessToken.kJoinChannel, expireTimestamp)
+    builder.setPrivilege(AccessToken.kPublishAudioStream, expireTimestamp)
+    builder.setPrivilege(AccessToken.kPublishVideoStream, expireTimestamp)
+    builder.setPrivilege(AccessToken.kPublishDataStream, expireTimestamp)
+
+    result = builder.buildToken()
+    print result
+
 
 if __name__ == "__main__":
-  main()
+    main()

@@ -6,6 +6,7 @@ from random import randint
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../src'))
 from DynamicKey5 import *
+
 appID = "970ca35de60c44645bbae8a215061b33"
 appCertificate = "5cfd2fd1755d40ecb72977518be15d3b"
 channelname = "7d72365eb983485397e3e3f9d460bdda"
@@ -62,7 +63,7 @@ class DynamicKeyTest(unittest.TestCase):
             unixts,
             randomint,
             uid,
-            expiredts,NoUpload)
+            expiredts, NoUpload)
         self.assertEqual(noUpload, actual)
         audioVideoUpload = "005BAAoADJERDA3QThENTE2NzJGNjQwMzY5NTFBNzE0QkI5NTc0N0Q1QjZGQjMQAJcMo13mDERkW7roohUGGzOwKDdW9buDA68oN1YBAAEAAQAz";
         actual = generateInChannelPermissionKey(
@@ -72,9 +73,8 @@ class DynamicKeyTest(unittest.TestCase):
             unixts,
             randomint,
             uid,
-            expiredts,AudioVideoUpload)
-        self.assertEqual(audioVideoUpload , actual)
-
+            expiredts, AudioVideoUpload)
+        self.assertEqual(audioVideoUpload, actual)
 
 
 if __name__ == "__main__":

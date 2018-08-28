@@ -9,8 +9,9 @@ account = "2882341273"
 appID = "970CA35de60c44645bbae8a215061b33"
 appCertificate = "5CFd2fd1755d40ecb72977518be15d3b"
 now = 1514133234
-validTimeInSeconds = 3600*24
+validTimeInSeconds = 3600 * 24
 expiredTsInSeconds = now + validTimeInSeconds
+
 
 class DynamicKeyTest(unittest.TestCase):
 
@@ -20,6 +21,6 @@ class DynamicKeyTest(unittest.TestCase):
             account, appID, appCertificate, expiredTsInSeconds)
         self.assertEqual(expected, actual)
 
+
 if __name__ == "__main__":
     unittest.main()
-

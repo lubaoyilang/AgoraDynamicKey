@@ -8,6 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../src'))
 from DynamicKey4 import generateRecordingKey
 from DynamicKey4 import generateMediaChannelKey
 from DynamicKey4 import generatePublicSharingKey
+
 appID = "970ca35de60c44645bbae8a215061b33"
 appCertificate = "5cfd2fd1755d40ecb72977518be15d3b"
 channelname = "7d72365eb983485397e3e3f9d460bdda"
@@ -58,6 +59,7 @@ class DynamicKeyTest(unittest.TestCase):
             expiredts)
         print actual
         self.assertEqual(expected, actual)
+
 
 if __name__ == "__main__":
     unittest.main()

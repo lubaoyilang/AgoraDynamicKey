@@ -3,7 +3,7 @@ import unittest
 import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../src'))
-import SimpleTokenBuilder 
+import SimpleTokenBuilder
 import AccessToken
 
 appID = "970CA35de60c44645bbae8a215061b33"
@@ -14,6 +14,7 @@ expireTimestamp = 1446455471
 salt = 1
 ts = 1111111
 
+
 class SimpleTokenBuilderTest(unittest.TestCase):
 
     def test_(self):
@@ -23,9 +24,10 @@ class SimpleTokenBuilderTest(unittest.TestCase):
         builder.token.salt = salt
         builder.token.ts = ts
         builder.token.messages[AccessToken.kJoinChannel] = expireTimestamp
-        
+
         result = builder.buildToken()
         self.assertEqual(expected, result)
+
 
 if __name__ == "__main__":
     unittest.main()
